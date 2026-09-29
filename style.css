@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ARKA FON ANIMASIÝASY (Tiz we owadan özi üýtgäp durýan reňkler) */
+body {
+    background: linear-gradient(135deg, #ff007f, #7928ca, #0070f3, #00dfd8, #ff007f);
+    background-size: 500% 500%;
+    animation: gradientAnim 8s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #111;
+    overflow: hidden;
+}
+
+@keyframes gradientAnim {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hidden { display: none !important; }
+
+.auth-container {
+    width: 100vw; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.auth-card {
+    width: 90%; max-width: 400px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 24px; padding: 30px; text-align: center; color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.brand-header h1 { font-size: 1.6rem; margin-top: 10px; color: #fff; }
+.brand-header p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px; }
+.logo-icon { width: 70px; height: 70px; background: #0284c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto; color: white; box-shadow: 0 0 25px rgba(2,132,199,0.9); }
+
+.input-field {
+    background: rgba(30, 41, 59, 0.9); border: 1px solid #334155; border-radius: 14px;
+    display: flex; align-items: center; padding: 12px 16px; margin: 14px 0; color: #38bdf8; gap: 12px;
+}
+.input-field input { background: transparent; border: none; outline: none; color: white; width: 100%; font-size: 0.95rem; }
+.country-prefix { font-weight: bold; }
+
+.btn-primary {
+    width: 100%; background: #0284c7; color: white; border: none;
+    padding: 13px; border-radius: 14px; font-weight: bold; cursor: pointer; margin-top: 10px;
+    transition: 0.3s;
+}
+.btn-primary:hover { background: #026d9e; transform: translateY(-2px); }
+
+.messenger-app {
+    width: 100vw; max-width: 440px; height: 100vh;
+    background: #ffffff; display: flex; flex-direction: column; position: relative;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6); overflow: hidden; border-radius: 24px;
+}
+
+.page-content {
+    flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 65px; background: #fff; position: relative;
+}
+
+.inbox-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; font-weight: bold; font-size: 1.2rem; border-bottom: 1px solid #f1f1f1; background: #fff;
+}
+
+.header-actions { display: flex; gap: 12px; position: relative; }
+.icon-action-btn { 
+    background: #f1f5f9; border: none; font-size: 1.1rem; width: 38px; height: 38px; border-radius: 50%;
+    cursor: pointer; color: #0284c7; display: flex; align-items: center; justify-content: center; transition: 0.2s; 
+}
+.icon-action-btn:hover { background: #0284c7; color: white; transform: scale(1.05); }
+
+/* DROPDOWN MENU */
+.create-dropdown {
+    position: absolute; top: 60px; right: 20px; background: white; border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 200; overflow: hidden; border: 1px solid #eee; width: 160px;
+}
+.create-dropdown div {
+    padding: 12px 15px; font-size: 0.85rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 10px; color: #333; transition: 0.2s;
+}
+.create-dropdown div:hover { background: #f1f5f9; color: #0284c7; }
+
+.stories-row {
+    display: flex; gap: 15px; padding: 14px 20px; overflow-x: auto; border-bottom: 1px solid #f1f1f1; align-items: center;
+}
+.story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; color: #333; cursor: pointer; }
+.story-ring { width: 62px; height: 62px; border-radius: 50%; border: 2.5px solid #0284c7; padding: 2px; position: relative; }
+.story-ring img, .story-ring video { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.my-story .plus-badge {
+    position: absolute; bottom: 0; right: 0; background: #22c55e; color: white;
+    width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; border: 2px solid white;
+}
+
+.inbox-chat-item { display: flex; align-items: center; padding: 14px 20px; gap: 15px; cursor: pointer; border-bottom: 1px solid #f9f9f9; transition: background 0.2s; }
+.inbox-chat-item:hover { background: #f1f5f9; }
+.inbox-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+.inbox-info { flex: 1; }
+.inbox-info h4 { font-size: 1rem; color: #111; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.inbox-info p { font-size: 0.78rem; color: #666; margin-top: 3px; }
+.status-online { color: #22c55e !important; font-weight: 600; }
+.status-offline { color: #94a3b8 !important; }
+
+/* PROFIL STIL */
+.profile-header-bg { height: 160px; background: linear-gradient(135deg, #0284c7, #1e1b4b); position: relative; }
+.profile-top-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; color: white; font-weight: bold; }
+.trans-btn { background: transparent; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+.profile-top-icons { display: flex; gap: 15px; cursor: pointer; }
+
+.profile-card-box { background: white; margin-top: -20px; border-radius: 22px 22px 0 0; padding: 20px; box-shadow: 0 -4px 15px rgba(0,0,0,0.05); }
+.profile-user-row { display: flex; align-items: center; gap: 15px; }
+.avatar-container { position: relative; width: 72px; height: 72px; }
+.main-profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.camera-badge { position: absolute; bottom: 0; right: 0; background: #111; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; border: 2px solid white; }
+
+.profile-names h3 { font-size: 1.2rem; color: #111; }
+.profile-names p { font-size: 0.82rem; color: #666; margin-top: 2px; }
+.phone-txt { font-size: 0.82rem; color: #444; }
+.btn-edit-login { margin-top: 15px; width: 100%; background: #f1f5f9; border: none; padding: 10px; border-radius: 10px; color: #0284c7; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+
+.profile-menu-list { background: #fff; display: flex; flex-direction: column; }
+.menu-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #f8f8f8; cursor: pointer; font-size: 0.92rem; color: #222; }
+.menu-row-left { display: flex; align-items: center; gap: 15px; }
+.menu-row-left i { font-size: 1.15rem; width: 25px; text-align: center; }
+.arrow-icon { color: #ccc; font-size: 0.8rem; }
+
+/* 2 SANY AŞAKKY PANEL */
+.bottom-nav {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 62px;
+    background: #ffffff; border-top: 1px solid #eee; display: flex;
+    justify-content: space-around; align-items: center; z-index: 100;
+}
+.nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.72rem; color: #94a3b8; gap: 3px; cursor: pointer; }
+.nav-item i { font-size: 1.15rem; }
+.nav-item.active { color: #0284c7; font-weight: bold; }
+
+/* ÇAT SAHYPASY */
+.chat-main { position: absolute; inset: 0; background: white; z-index: 150; display: flex; flex-direction: column; }
+.chat-header { padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; background: #fff; }
+.active-chat-user { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.active-avatar-wrap { position: relative; width: 40px; height: 40px; }
+.active-avatar-wrap img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.dot-indicator { position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; border-radius: 50%; border: 2px solid white; }
+.dot-indicator.online { background: #22c55e; }
+.dot-indicator.offline { background: #94a3b8; }
+
+.online-tag { font-size: 0.78rem; font-weight: 500; }
+.header-tools { display: flex; gap: 8px; align-items: center; }
+.icon-btn { background: #f1f5f9; border: none; color: #0284c7; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: 0.2s; }
+.icon-btn:hover { background: #e2e8f0; }
+
+.chat-messages-bg { flex: 1; background: linear-gradient(to bottom, #e0f2fe, #f0fdf4); padding: 20px; overflow-y: auto; }
+.messages-container { display: flex; flex-direction: column; gap: 12px; }
+.msg { display: flex; }
+.msg.sent { justify-content: flex-end; }
+.msg.received { justify-content: flex-start; }
+.msg-bubble { background: white; padding: 10px 14px; border-radius: 14px; max-width: 68%; font-size: 0.92rem; box-shadow: 0 3px 6px rgba(0,0,0,0.05); color: #111; }
+.sent .msg-bubble { background: #0284c7; color: white; }
+
+.chat-input-bar { padding: 12px 18px; border-top: 1px solid #eee; display: flex; gap: 10px; align-items: center; background: white; }
+.chat-input-bar input { flex: 1; background: #f1f5f9; border: none; padding: 10px 16px; border-radius: 20px; outline: none; font-size: 0.95rem; }
+.send-btn { background: #0284c7; border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* MODALLAR */
+.video-call-modal { position: fixed; inset: 0; background: #000; z-index: 300; display: flex; justify-content: center; align-items: center; }
+.video-box { width: 100%; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
+#remoteVideo { width: 100%; height: 100%; object-fit: cover; background: #111; }
+#localVideo { position: absolute; bottom: 30px; right: 30px; width: 150px; height: 200px; border-radius: 14px; object-fit: cover; border: 2px solid white; background: #222; }
+.call-info-tag { position: absolute; top: 30px; background: rgba(0,0,0,0.6); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; }
+
+.voice-call-modal { position: fixed; inset: 0; background: radial-gradient(circle, #1e293b, #0f172a); z-index: 300; display: flex; justify-content: center; align-items: center; }
+.voice-call-card { display: flex; flex-direction: column; align-items: center; text-align: center; color: white; }
+.voice-avatar-ring { position: relative; width: 130px; height: 130px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
+.voice-avatar-pulse { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #38bdf8; }
+.voice-call-card h2 { font-size: 1.6rem; margin-bottom: 8px; }
+.voice-call-card p { font-size: 0.95rem; color: #38bdf8; font-weight: 500; margin-bottom: 40px; }
+
+.call-controls, .voice-controls { display: flex; gap: 20px; position: absolute; bottom: 40px; }
+.control-btn { width: 65px; height: 65px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; }
+.end-call { background: #ef4444; color: white; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+.modal-card { background: white; padding: 25px; border-radius: 20px; width: 90%; max-width: 350px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+.modal-card h3 { font-size: 1.15rem; margin-bottom: 15px; color: #111; }
+.modal-input { margin-bottom: 12px; }
+.modal-input input, .modal-input select { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 10px; outline: none; font-size: 0.9rem; }
+.modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
+.btn-sec { flex: 1; background: #e2e8f0; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: bold; color: #475569; }
+.btn-pri { flex: 1; background: #0284c7; border: none; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: bold; color: white; }
+
+/* SAZLAMALAR (BLOK / UDALIT) */
+.settings-options-list { display: flex; flex-direction: column; gap: 10px; }
+.setting-item-btn { width: 100%; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; }
+.block-btn { background: #fef2f2; color: #ef4444; }
+.delete-btn { background: #fff1f2; color: #e11d48; }

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger Pro - Ultimate Animated</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- GIRIŞ EKRANY -->
+    <div class="auth-container" id="authConnection">
+        <div class="auth-card">
+            <div class="brand-header">
+                <div class="logo-icon"><i class="fa-solid fa-comments"></i></div>
+                <h1>Messenger</h1>
+                <p>Loginiňizi we telefon belgiňizi giriziň</p>
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="loginUsername" placeholder="Adyňyz (Meselem: Nazar)">
+            </div>
+            <div class="input-field">
+                <span class="country-prefix">+993</span>
+                <input type="tel" id="phoneNumber" placeholder="6X XX XX XX" maxlength="8">
+            </div>
+            <button class="btn-primary" id="btnEnter">Ulgama Gir</button>
+        </div>
+    </div>
+
+    <!-- ESASY APP -->
+    <div class="messenger-app hidden" id="messengerApp">
+        
+        <!-- INBOX SAHYPASY -->
+        <div class="page-content" id="inboxPage">
+            <header class="inbox-header">
+                <h2>Входящие</h2>
+                <div class="header-actions">
+                    <!-- ADAM GOŞMAK DÜWMESI (AÝDYŇ GÖRÜNÝÄR) -->
+                    <button class="icon-action-btn" id="openAddContactModal" title="Täze adam goşmak"><i class="fa-solid fa-user-plus"></i></button>
+                    <!-- GRUPPA / KANAL DÖRETMEK DÜWMESI -->
+                    <button class="icon-action-btn" id="openCreateMenu" title="Grup / Kanal açmak"><i class="fa-solid fa-circle-plus"></i></button>
+                </div>
+            </header>
+
+            <div class="stories-row">
+                <div class="story-item" id="btnCreateStory" title="Surat ýa-da wideo goş">
+                    <div class="story-ring my-story">
+                        <img src="https://ui-avatars.com/api/?name=User&background=0284c7&color=fff" id="inboxMyAvatar">
+                        <div class="plus-badge">+</div>
+                    </div>
+                    <span>Создать</span>
+                </div>
+                <!-- Ýüklenen storyler şu ýere düşer -->
+                <div id="storiesContainerList" style="display: flex; gap: 15px;"></div>
+            </div>
+
+            <!-- MENU (Grup ýa Kanal döretmek üçin) -->
+            <div class="create-dropdown hidden" id="createDropdownMenu">
+                <div id="menuCreateGroup"><i class="fa-solid fa-users"></i> Grup Açmak</div>
+                <div id="menuCreateChannel"><i class="fa-solid fa-bullhorn"></i> Kanal Açmak</div>
+            </div>
+
+            <div class="inbox-chats-list" id="chatsListContainer">
+                <!-- Täze goşulan adamlar, gruplar we kanallar şu ýere gelýär -->
+            </div>
+        </div>
+
+        <!-- PROFIL SAHYPASY -->
+        <div class="page-content hidden" id="profilePage">
+            <div class="profile-header-bg">
+                <div class="profile-top-bar">
+                    <button class="trans-btn" id="closeProfileBtn"><i class="fa-solid fa-xmark"></i></button>
+                    <span>Я</span>
+                    <div class="profile-top-icons">
+                        <i class="fa-solid fa-moon"></i>
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-card-box">
+                <div class="profile-user-row">
+                    <div class="avatar-container" id="changeAvatarBtn" style="cursor: pointer;" title="Surat üýtgetmek">
+                        <img src="https://ui-avatars.com/api/?name=Nazar&background=0284c7&color=fff" class="main-profile-img" id="profileAvatarImg">
+                        <div class="camera-badge"><i class="fa-solid fa-camera"></i></div>
+                    </div>
+                    <div class="profile-names">
+                        <h3 id="profileNameText">Nazar</h3>
+                        <p>imo ID: arturoff</p>
+                        <p class="phone-txt">Telefon: <span id="displayPhone">63122556</span> <i class="fa-solid fa-circle-check" style="color:#0ea5e9;"></i></p>
+                    </div>
+                </div>
+                <button class="btn-edit-login" id="editLoginBtn">Logini / Ady Üýtgetmek</button>
+            </div>
+
+            <div class="profile-menu-list">
+                <div class="menu-row">
+                    <div class="menu-row-left"><i class="fa-solid fa-shield-halved" style="color: #3b82f6;"></i><span>Безопасность и конфиденциальность</span></div>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </div>
+                <div class="menu-row">
+                    <div class="menu-row-left"><i class="fa-solid fa-gear" style="color: #0ea5e9;"></i><span>Настройки</span></div>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIÑE 2 SANY AŞAKKY PANEL -->
+        <nav class="bottom-nav">
+            <div class="nav-item active" id="navInbox">
+                <i class="fa-solid fa-comment-dots"></i>
+                <span>Входящие</span>
+            </div>
+            <div class="nav-item" id="navProfile">
+                <i class="fa-solid fa-user"></i>
+                <span>Профиль</span>
+            </div>
+        </nav>
+
+        <!-- ÇAT PENJIRESI -->
+        <main class="chat-main hidden" id="chatMainScreen">
+            <header class="chat-header">
+                <div class="active-chat-user" id="backToInbox">
+                    <i class="fa-solid fa-chevron-left" style="cursor:pointer; margin-right: 10px;"></i>
+                    <div class="active-avatar-wrap">
+                        <img src="https://ui-avatars.com/api/?name=User" id="activeChatImg">
+                        <span class="dot-indicator" id="headerDotIndicator"></span>
+                    </div>
+                    <div>
+                        <h3 id="activeChatTitle">Çat</h3>
+                        <span class="online-tag" id="activeChatStatus">online</span>
+                    </div>
+                </div>
+                <div class="header-tools">
+                    <button class="icon-btn" id="btnVideoCall" title="Wideo Jaň"><i class="fa-solid fa-video"></i></button>
+                    <button class="icon-btn" id="btnVoiceCall" title="Sesli Jaň"><i class="fa-solid fa-phone"></i></button>
+                    <button class="icon-btn" id="btnChatSettings" title="Sazlamalar (Blok / Udalit)"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+            </header>
+
+            <div class="chat-messages-bg" id="chatMessagesBg">
+                <div class="messages-container" id="messagesContainer">
+                    <div class="msg received"><div class="msg-bubble">Salam! Çat açyk we janly reňkli animasiýa işleýär.</div></div>
+                </div>
+            </div>
+
+            <footer class="chat-input-bar">
+                <input type="text" id="inputMsg" placeholder="Habar ýazyň..." autocomplete="off">
+                <button class="icon-action-btn" id="btnSendAudio" title="Sesli Habar"><i class="fa-solid fa-microphone"></i></button>
+                <button class="send-btn" id="btnSendMsg"><i class="fa-solid fa-paper-plane"></i></button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- WIDEO JAŇ MODALY -->
+    <div class="video-call-modal hidden" id="videoCallModal">
+        <div class="video-box">
+            <video id="remoteVideo" autoplay playsinline></video>
+            <video id="localVideo" autoplay playsinline muted></video>
+            <div class="call-info-tag">Wideo Jaň İşjeň...</div>
+            <div class="call-controls">
+                <button class="control-btn end-call" id="endCallBtn"><i class="fa-solid fa-phone-slash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SESLI JAŇ MODALY -->
+    <div class="voice-call-modal hidden" id="voiceCallModal">
+        <div class="voice-call-card">
+            <div class="voice-avatar-ring">
+                <img src="" id="voiceCallAvatar" class="voice-avatar-pulse">
+            </div>
+            <h2 id="voiceCallName">Dostum</h2>
+            <p id="voiceCallStatusText">Jaň edilýär...</p>
+            <div class="voice-controls">
+                <button class="control-btn end-call" id="endVoiceCallBtn"><i class="fa-solid fa-phone-slash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TÄZE ADAM GOŞMAK MODALY -->
+    <div class="modal-overlay hidden" id="addContactModal">
+        <div class="modal-card">
+            <h3>Täze Çat Goşmak</h3>
+            <div class="modal-input">
+                <input type="text" id="newContactName" placeholder="Ady (Meselem: Merjen)">
+            </div>
+            <div class="modal-input">
+                <input type="tel" id="newContactPhone" placeholder="Telefon belgi (6X XX XX XX)" maxlength="8">
+            </div>
+            <div class="modal-input">
+                <select id="newContactStatus">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-sec" id="cancelAddContact">Ýatyr</button>
+                <button class="btn-pri" id="saveNewContact">Goş</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRUPPA / KANAL DÖRETMEK MODALY -->
+    <div class="modal-overlay hidden" id="createGroupChannelModal">
+        <div class="modal-card">
+            <h3 id="createModalTitle">Täze Grup Döretmek</h3>
+            <div class="modal-input">
+                <input type="text" id="createGroupName" placeholder="Ady...">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-sec" id="cancelCreateModal">Ýatyr</button>
+                <button class="btn-pri" id="saveCreateModal">Döret</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÇAT SAZLAMALARY (BLOK / UDALIT) MODALY -->
+    <div class="modal-overlay hidden" id="chatSettingsModal">
+        <div class="modal-card">
+            <h3>Sazlamalar</h3>
+            <div class="settings-options-list">
+                <button id="blockUserBtn" class="setting-item-btn block-btn"><i class="fa-solid fa-ban"></i> Bloklamak</button>
+                <button id="deleteChatBtn" class="setting-item-btn delete-btn"><i class="fa-solid fa-trash"></i> Çaty Pozmak (Udalit)</button>
+            </div>
+            <div class="modal-buttons" style="margin-top: 20px;">
+                <button class="btn-sec" id="closeChatSettings">Ýap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- STORY ÜÇIN GIZLIN FILE INPUT -->
+    <input type="file" id="storyFileInput" accept="image/*,video/*" class="hidden">
+
+    <script src="script.js"></script>
+</body>
+</html>
