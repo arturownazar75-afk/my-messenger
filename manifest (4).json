@@ -1,0 +1,12 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Messenger Pro",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "MessengerPro",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "description": "A fast and secure messaging app for chatting with friends"
+}
